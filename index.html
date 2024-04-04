@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Team Members</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    /* styles.css */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Center vertically */
+      height: 100vh; /* Ensure the body covers the viewport height */
+      margin: 0; /* Remove default margin */
+    }
+
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      z-index: 9999; /* Ensure the popup is above other content */
+    }
+
+    .popup button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .team-members-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .team-member {
+      width: calc(30% - 10px); /* 3 members per row on PC */
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s;
+      box-sizing: border-box;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .team-member-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .team-member-name {
+      padding: 10px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .team-member-role {
+      padding: 5px 10px;
+      text-align: center;
+      margin: 0;
+      color: #666;
+    }
+
+    /* Media query for phone screens */
+    @media only screen and (max-width: 768px) {
+      .team-member {
+        width: calc(50% - 10px); /* 2 members per row on phone */
+      }
+    }
+  </style>
+</head>
+<body>
+<center>
+  <div class="popup" id="popup" style="display: none;">
+    <button id="closePopup">&times;</button>
+    <h2 id="popup-name"></h2>
+    <p id="popup-role"></p>
+  </div>
+
+  <div class="team-members-container">
+    <div class="team-member" data-role="team-member">
+      <img src="https://site.ieee.org/jordan/files/2024/01/WhatsApp-Image-2024-01-02-at-12.48.17-AM.jpeg" alt="Yusra Obeidat" class="team-member-image">
+      <h4 class="team-member-name">Yusra Obeidat</h4>
+      <p class="team-member-role">Secretary</p>
+    </div>
+    <div class="team-member" data-role="team-member">
+      <img src="https://site.ieee.org/jordan/files/2021/09/Abdallah.jpg" alt="Abdullah Qusef" class="team-member-image">
+      <h4 class="team-member-name">Abdullah Qusef</h4>
+      <p class="team-member-role">Treasurer</p>
+    </div>
+    <div class="team-member" data-role="team-member">
+      <img src="https://site.ieee.org/jordan/files/2024/01/Mohammad-Abdel-Majeed-photo.jpg" alt="Mohammed Abdel-Majeed" class="team-member-image">
+      <h4 class="team-member-name">Mohammed Abdel-Majeed</h4>
+      <p class="team-member-role">Secretary-General Activities</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+ <script>
+    document.querySelectorAll('[data-role="team-member"]').forEach(teamMember => {
+        teamMember.addEventListener('click', () => {
+            const teamMemberName = teamMember.querySelector('.team-member-name').innerText;
+            const teamMemberRole = teamMember.querySelector('.team-member-role').innerText;
+
+            const popup = document.getElementById('popup');
+            const popupName = document.getElementById('popup-name');
+            const popupRole = document.getElementById('popup-role');
+
+            popupName.textContent = `Name: ${teamMemberName}`;
+            popupRole.textContent = `Role: ${teamMemberRole}`;
+
+            // Adding custom message based on team member
+            let customMessage = '';
+            if (teamMemberName === 'Yusra Obeidat') {
+                customMessage = 'Dr. Yusra Obeidat received her B.Sc. in electronic engineering from Yarmouk University, Jordan in 2010, and she received her M.Sc. and Ph.D. in electrical engineering from Colorado State University, USA 2014 and 2018 respectively. She is currently an assistant professor in the electronic engineering department at Yarmouk University in Jordan. Dr. Yusra worked as an assistant dean for students and graduates’ affairs at the Hijjawi Faculty for Engineering Technology at Yarmouk University for one year and five months. In her research work, Dr. Yusra focuses on the design of sensor systems for different applications, instrumentation, electronic circuits, Machine learning, and embedded systems. Dr. Yusra works to be involved in professional networks and interacts with people from academic and scientific aspects to develop her knowledge and learn new ways of thinking and communicating.  She tends to interact with students and encourage them to be more responsible, ambitious, and to develop themselves to achieve their goals and be successful engineers. Dr. Yusra is an IEEE member and the counselor of IEEE women in engineering (WIE)- Yarmouk branch, and she is recently selected as the Chair for IEEE WIE affinity group in Jordan section, her main goal is to develop and promote more women engineers and scientists at Yarmouk university and to inspire them to follow their academic interests to a career in engineering. She was also the supervisor of the developer students club (DSC) -Yarmouk university branch (2019-2021). This branch was one of the first branches that was approved in middle east in 2019. She used to support the workshops and courses provided by the club team. Moreover, Dr. Yusra received three research grants from the Deanship of Scientific research at Yarmouk University. The projects focused on very important applications including Heart diseases diagnosis, water quality monitoring, and diabetes monitoring';
+            } else if (teamMemberName === 'Abdullah Qusef') {
+                customMessage = 'hello world2';
+            } else if (teamMemberName === 'Mohammed Abdel-Majeed') {
+                customMessage = 'hello world3';
+            }
+
+            // Appending custom message
+            popupRole.insertAdjacentHTML('beforeend', `<br>${customMessage}`);
+
+            popup.style.display = 'block';
+        });
+    });
+
+    // Close popup when the close button is clicked
+    document.getElementById('closePopup').addEventListener('click', () => {
+        document.getElementById('popup').style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
